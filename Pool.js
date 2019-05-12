@@ -11,8 +11,13 @@ class Pool{
         this.fencers = _fencers;
         this.numFencers = this.fencers.length;
         this.order = this.setOrder();
+        this.currBout = 0;
     }
 
+    /**
+    * sets the order for the pool based on the number of fencers
+    * number of fencers must be between 2 and 7
+    */
     setOrder(){
         var temp;
         switch(this.numFencers){
@@ -41,8 +46,17 @@ class Pool{
         return temp;
     }
 
-    nextBout(){
-        
+    /**
+    * returns an array of two fencers, the first element is the left fencer and
+    * the second element is the right fencer
+    */
+    getCurrentBout(){
+        let rightFencerNum = (Math.floor(this.order[this.currBout] / 10)) - 1;
+        let leftFencerNum = (this.order[this.currBout] % 10) - 1;
+
+        this.currBout++;
+
+        return [this.fencers[leftFencerNum], this.fencers[rightFencerNum]];
     }
 
     getOrder(){return this.order;}

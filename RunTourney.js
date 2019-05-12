@@ -8,6 +8,10 @@ let fencer2 = new Fencer("Nick Bampton"," C");
 let fencer3 = new Fencer("Tan Le", "", "", "E");
 
 let pool1 = new Pool(1, [fencer0, fencer1, fencer2, fencer3]);
+let currentBout = pool1.getCurrentBout();
 
-console.log(pool1.getFencers());
-console.log(pool1.getOrder());
+console.log("Bout Order: " + pool1.getOrder());
+
+console.log("\nFirst bout:");
+console.log("   FOTL is: " + currentBout[0].getName());
+console.log("   FOTR is: " + currentBout[1].getName());
