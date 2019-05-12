@@ -6,6 +6,12 @@
 */
 class Fencer {
 
+    /**
+    * @param name the name of the fencer
+    * @param epeeRating the epee rating of the fencer
+    * @param foilRating the foil rating of the fencer
+    * @param sabreRating the sabre rating of the fencer
+    */
     constructor(name, epeeRating, foilRating, sabreRating){
         this.name = name;
         this.epeeRating = epeeRating || "U";
@@ -18,6 +24,9 @@ class Fencer {
     }
 
     /**
+    * @param win boolean, whether they won the bout or not
+    * @param scored the points scored
+    * @param received the points received
     * adds a bout to the fencer
     */
     addBout(win, scored, received){
