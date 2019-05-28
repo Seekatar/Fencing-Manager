@@ -7,7 +7,7 @@
 
 const DEBUG = true;
 
-class Pool{
+class Pool {
 
     /**
     * @param number the number of fencers
@@ -18,7 +18,6 @@ class Pool{
         // this.DEBUG = true;
         this.number = number;
         this.fencers = fencers;
-        this.weapon = weapon;
         this.numFencers = this.fencers.length;
         this.order = this.setOrder();
         this.currBout = 0;
