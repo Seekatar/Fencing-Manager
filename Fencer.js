@@ -30,7 +30,7 @@ class Fencer {
     * adds a bout to the fencer
     */
     addBout(win, scored, received){
-        if(win === true){
+        if (win){
             this.victories++;
         }
         this.touchesScored += scored;
