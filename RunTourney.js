@@ -1,10 +1,12 @@
 const Fencer = require('./Fencer.js');
 const Pool = require('./Pool.js');
 const Event = require('./Event.js');
+const Tournament = require('./Tournament.js');
 
 /* Testing ********************************************************************/
 const POOL_TEST = false;
-const EVENT_TEST = true;
+const EVENT_TEST = false;
+const TOURNEY_TEST = true;
 
 let fencer0 = new Fencer("Jimmy Wallace","B");
 let fencer1 = new Fencer("Patrick Malloy","B", "E");
@@ -24,12 +26,16 @@ if (POOL_TEST){
 if (EVENT_TEST){
     let e = new Event("test", "epee", [fencer0, fencer1, fencer2]);
 
-    console.log(e.getName());
-    console.log(e.getWeapon());
-    console.log(e.getFencers());
     console.log(e.getPools());
 
     e.createPools();
 
     console.log(e.getPools());
+}
+
+if (TOURNEY_TEST){
+    let t = new Tournament("test");
+    t.addEvent("Div 1 ME", "epee", [fencer0, fencer1, fencer2], true);
+    console.log(t.getName());
+    console.log(t.getEvents());
 }

@@ -12,7 +12,8 @@ class Pool {
     /**
     * @param number the number of fencers
     * @param fencers an array of fencers in the pool
-    * @param weapon the weapon for this pool (epee/foil/sabre)
+    * @param weapon the weapon for this pool (epee/foil/sabre)\
+    * @param size may or may not be used 
     */
     constructor(number, fencers, weapon, size){
         this.number = number;

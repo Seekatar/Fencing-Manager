@@ -10,10 +10,14 @@ class Tournament {
     * @param name the name of the tournament
     * @param events an array of the events the tournament will have
     */
-    constructor(name, events, numFencers){
+    constructor(name){
         this.name = name;
-        this.events = events;
-        this.numFencers = numFencers;
+        this.events = [];
+        this.numEvents = this.events.lenght;
+    }
+
+    addEvent(name, weapon, fencers, sanctioned){
+        this.events.push(name, weapon, fencers, sanctioned)
     }
 
     getName(){return this.name;}
