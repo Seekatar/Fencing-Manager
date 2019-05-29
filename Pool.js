@@ -13,12 +13,13 @@ class Pool {
     * @param number the number of fencers
     * @param fencers an array of fencers in the pool
     * @param weapon the weapon for this pool (epee/foil/sabre)\
-    * @param size may or may not be used 
+    * @param size may or may not be used
     */
     constructor(number, fencers, weapon, size){
         this.number = number;
         this.size = size;
         this.currBout = 0;
+        this.bouts = [];
 
         if(fencers){
             this.fencers = fencers;
@@ -68,6 +69,15 @@ class Pool {
                 break;
         }
         return temp;
+    }
+
+    addBouts(){
+        for (var i = 0; i < this.numFencers; i++){
+            let temp = getCurrentBout();
+            let left = temp[0];
+            let right = temp[1];
+            this.bouts.push(new Bout());
+        }
     }
 
     /**
