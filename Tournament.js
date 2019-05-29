@@ -1,7 +1,7 @@
 /**
 * Tournament class
 * Jimmy Wallace 5/12/19
-* holds the name ane events of the tournament
+* holds the name and events of the tournament
 */
 
 class Tournament {

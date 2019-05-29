@@ -14,13 +14,26 @@ class Pool {
     * @param fencers an array of fencers in the pool
     * @param weapon the weapon for this pool (epee/foil/sabre)
     */
-    constructor(number, fencers, weapon){
-        // this.DEBUG = true;
+    constructor(number, fencers, weapon, size){
         this.number = number;
+        this.size = size;
+        this.currBout = 0;
+
+        if(fencers){
+            this.fencers = fencers;
+            this.numFencers = this.fencers.length;
+            this.order = this.setOrder();
+        }
+        else{
+            console.log("<!> WARNING <!> Fencer array is empty, you must manually call Pool.addFencers()")
+            this.numFencers = 0;
+        }
+    }
+
+    addFencers(fencers){
         this.fencers = fencers;
         this.numFencers = this.fencers.length;
-        this.order = this.setOrder();
-        this.currBout = 0;
+        setOrder();
     }
 
     /**
