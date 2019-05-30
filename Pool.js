@@ -76,7 +76,8 @@ class Pool {
             let temp = getCurrentBout();
             let left = temp[0];
             let right = temp[1];
-            this.bouts.push(new Bout());
+
+            this.bouts.push(new Bout(left, right));
         }
     }
 

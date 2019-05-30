@@ -19,9 +19,13 @@ class Bout(){
         this.leftScore = leftScore;
         this.rightScore = rightScore;
         this.time = time;
-        this.maxTime = maxTime;
-        this.period = period;
-        this.maxPeriods = maxPeriods;
+        this.cards = cards;
+    }
+
+    score(left, right, time , cards){
+        this.leftScore = leftScore;
+        this.rightScore = rightScore;
+        this.time = time;
         this.cards = cards;
     }
 }
