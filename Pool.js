@@ -20,6 +20,7 @@ class Pool {
         this.size = size;
         this.currBout = 0;
         this.bouts = [];
+        this.places = [];
 
         if(fencers){
             this.fencers = fencers;
@@ -30,6 +31,40 @@ class Pool {
             console.log("<!> WARNING <!> Fencer array is empty, you must manually call Pool.addFencers()")
             this.numFencers = 0;
         }
+    }
+
+    scorePool(){
+        let results = [this.fencers[0]];
+
+        for (var f = 0; f < this.numFencers; f++){
+            for (var r = 0; r < results.length; r++){
+
+                if (fencers[f].getVictories() < results[r].getVictories() &&
+                    fencers[f].getVictories() != results[r].getVictories()){
+                        results.splice(r+1, 0, fencers[f]);
+                        break;
+                }
+                else if (fencers[f].getIndicator() < results[r].getIndicator() &&
+                         fencers[f].getIndicator() != results[r].getIndicator()){
+                         results.splice(r+1, 0, fencers[f]);
+                         break;
+                }
+                else if (fencers[f].getTS() < results[r].getTS() &&
+                         fencers[f].getTS() != results[r].getTS()){
+                         results.splice(r+1, 0, fencers[f]);
+                         break;
+                }
+                else if (fencers[f].getTR() < results[r].getTR() &&
+                         fencers[f].getTR() != results[r].getTR()){
+                         results.splice(r+1, 0, fencers[f]);
+                         break;
+                }
+                else {
+                    results.splice(r+2, 0, fencers[f]);
+                }
+            }
+        }
+        return results;
     }
 
     /**
@@ -106,38 +141,16 @@ class Pool {
     /**
     * @param leftScore the score for the left fencer
     * @param rightScore the score for the right fencer
-    * @return the winner of the bout
-    * lets the user score a bout
-    * determines if the left fencer has won, if they have, add a victory
-    * to that fencer object as well as the scored and recieved touches
-    * if the left fencer has not won, the above is done to the right fencer
+    * goes through the array of bouts and scores them based on the two input
+    * arrays
+    * after scoring them they "finish" the bouts by calculating which fencer won
+    * the bout and adding the stats to each fencer (stats: V, TS, TR, I)
     */
     scoreBout(leftScore, rightScore){
-        let arry = this.getCurrentBout();
-        let leftFencer = arry[0];
-        let rightFencer = arry[1];
-
-        if (DEBUG){
-            console.log("\nBout " + this.currBout +":");
-            console.log("   FOTL is: " + leftFencer.getName());
-            console.log("   FOTR is: " + rightFencer.getName());
-            console.log("   FOTL score:" + leftScore);
-            console.log("   FOTR score:" + rightScore);
+        for (var i = 0; i < this.bouts.length; i++){
+            this.bouts[i].score(leftScore[i], rightScore[i]);
+            this.bouts[i].finish();
         }
-
-        // left fencer won
-        if (leftScore > rightScore){
-            leftFencer.addBout(true, leftScore, rightScore);
-            rightFencer.addBout(false, rightScore, leftScore);
-
-            return leftFencer;
-        }
-
-        // right fencer won
-        rightFencer.addBout(true, leftScore, rightScore);
-        leftFencer.addBout(false, rightScore, leftScore);
-
-        return rightFencer;
     }
 
     /**

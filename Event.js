@@ -24,6 +24,10 @@ class Event {
         this.sanctioned = sanctioned;
     }
 
+    /**
+    * @return the number of pools needed for this event
+    * calculates the number of pools based on how many fencers there are
+    */
     calculateNumPools(){
         if (this.numFencers % 7 === 0) {return this.numFencers / 7;}
         if (this.numFencers <= 8) {return 1;}
@@ -31,6 +35,11 @@ class Event {
         return Math.Floor(this.numFencers / 7) + 1;
     }
 
+    /**
+    * creates the correct amount of pools with the correct amount of fencers in
+    * each
+    * 5/30/19 right now only works properly if numPools == 1
+    */
     createPools(){
         this.calculateNumPools();
         for (var i = 0; i < this.numPools; i++){

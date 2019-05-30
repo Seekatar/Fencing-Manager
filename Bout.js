@@ -25,22 +25,32 @@ class Bout{
     /**
     * @param left the left score
     * @param right the right score
-    * @param time the time the bout took
     * @param cards any cards issued during the bout
     * scores the bout if it wasn't scored on creation
     */
-    score(left, right, time , cards){
+    score(left, right, cards){
         this.leftScore = leftScore;
         this.rightScore = rightScore;
-        this.time = time;
         this.cards = cards;
+    }
+
+    finish(){
+        // left fencer wins
+        if (this.leftScore > this.rightScore){
+            this.FOTL.addBout(true, leftScore, rightScore);
+            this.FOTR.addBout(false, rightScore, leftScore);
+        }
+        // right fencer wins
+        else{
+            this.FOTR.addBout(true, leftScore, rightScore);
+            this.FOTL.addBout(false, rightScore, leftScore);
+        }
     }
 
     getFOTL(){return this.FOTL;}
     getFOTR(){return this.FOTR;}
     getLeftScore(){return this.leftScore;}
     getRightScore(){return this.rightScore;}
-    getTime(){return this.time;}
     getCards(){return this.cards;}
 }
 module.exports = Bout;

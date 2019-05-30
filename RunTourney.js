@@ -8,7 +8,8 @@ const Card = require('./Card.js');
 const POOL_TEST = false;
 const EVENT_TEST = false;
 const TOURNEY_TEST = false;
-const CARD_TEST = true;
+const CARD_TEST = false;
+const RESULT_TEST = true;
 
 let fencer0 = new Fencer("Jimmy Wallace","B");
 let fencer1 = new Fencer("Patrick Malloy","B", "E");
@@ -45,4 +46,12 @@ if (TOURNEY_TEST){
 if (CARD_TEST){
     let c = new Card(1, fencer0, "Yellow", "weapon failed when presenting for testing")
     console.log(c.info());
+}
+
+if (RESULT_TEST){
+    let pool1 = new Pool(1, [fencer0, fencer1, fencer2]);
+    leftScores = [1,5,1];
+    rightScores = [5,3,5];
+    pool1.addBouts(leftScores, rightScores);
+    
 }
