@@ -33,7 +33,7 @@ class Pool {
         }
     }
 
-    scorePool(){
+    getResults(){
         let results = [this.fencers[0]];
 
         for (var f = 0; f < this.numFencers; f++){
@@ -122,6 +122,7 @@ class Pool {
             let right = temp[1];
 
             this.bouts.push(new Bout(left, right));
+            this.nextBout();
         }
     }
 
@@ -137,46 +138,22 @@ class Pool {
         return [this.fencers[leftFencerNum], this.fencers[rightFencerNum]];
     }
 
-
     /**
-    * @param leftScore the score for the left fencer
-    * @param rightScore the score for the right fencer
+    * @param leftScores the scores for the left fencer
+    * @param rightScores the scores for the right fencer
     * goes through the array of bouts and scores them based on the two input
     * arrays
     * after scoring them they "finish" the bouts by calculating which fencer won
     * the bout and adding the stats to each fencer (stats: V, TS, TR, I)
     */
-    scoreBout(leftScore, rightScore){
+    scoreBouts(leftScores, rightScores){
         for (var i = 0; i < this.bouts.length; i++){
-            this.bouts[i].score(leftScore[i], rightScore[i]);
+            this.bouts[i].score(leftScores[i], rightScores[i]);
             this.bouts[i].finish();
         }
     }
 
-    /**
-    * @param leftScores the scores for the entire pool for the left fencers
-    * @param rightScores the scores for the entire pool for the right fencers
-    * @throws an exception if the leftScores or rightScores arrays are not the
-    * correct size
-    * runs the pool based on two score arrays
-    */
-    runPool(leftScores, rightScores){
-        if (leftScores.length != this.order.length || rightScores.length != this.order.length){
-            throw "<!> Error <!> the score array for left or right scores is not the correct size!"
-        }
-
-        for (var i = 0; i < this.order.length; i++){
-            let winner = this.scoreBout(leftScores[i], rightScores[i]);
-
-            if (DEBUG)
-                console.log("Winner of bout " + i + " is " + winner.getName());
-
-            this.nextBout();
-        }
-    }
-
-    nextBout(){this.currBout++;}
-
+    nextBout(){this.currentBout++;}
     getOrder(){return this.order;}
     getFencers(){return this.fencers;}
 }
