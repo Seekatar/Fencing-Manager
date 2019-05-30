@@ -37,23 +37,12 @@ class Fencer {
         this.touchesReceived += received;
     }
 
-    getName()
-    {return this.name;}
-
-    getRatings()
-    {return new Array(this.epeeRating, this.foilRating, this.sabreRating);}
-
-    getVictories()
-    {return this.victories;}
-
-    getTS()
-    {return this.touchesScored;}
-
-    getTR()
-    {return this.touchesReceived;}
-
-    getInd()
-    {return this.touchesScored - this.touchesReceived;}
+    getName(){return this.name;}
+    getRatings(){return new Array(this.epeeRating, this.foilRating, this.sabreRating);}
+    getVictories(){return this.victories;}
+    getTS(){return this.touchesScored;}
+    getTR(){return this.touchesReceived;}
+    getInd(){return this.touchesScored - this.touchesReceived;}
 }
 
 module.exports = Fencer;

@@ -26,7 +26,7 @@ class Event {
 
     calculateNumPools(){
         if (this.numFencers % 7 === 0) {return this.numFencers / 7;}
-        if (this.numFencers < 8) {return 1;}
+        if (this.numFencers <= 8) {return 1;}
 
         return Math.Floor(this.numFencers / 7) + 1;
     }

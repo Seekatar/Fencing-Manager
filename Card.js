@@ -18,7 +18,16 @@ class Card {
         this.reason = reason;
     }
 
+    /**
+    * @returns a readable version of the information in this class
+    */
+    info(){
+        return this.color + " Card " + this.id + " was issued to " + this.fencer.getName() + " for reason: '" + this.reason + "'";
+    }
+
     getID(){return this.id;}
     getFencer(){return this.fencer;}
+    getColor(){return this.color;}
     getReason(){return this.reason;}
 }
+module.exports = Card;

@@ -32,6 +32,12 @@ class Pool {
         }
     }
 
+    /**
+    * @param fencers an array of fencers
+    * adds fencers to the pool if they were not added at the creation of the
+    * pool
+    * calls set order after adding the fencers
+    */
     addFencers(fencers){
         this.fencers = fencers;
         this.numFencers = this.fencers.length;
@@ -71,6 +77,9 @@ class Pool {
         return temp;
     }
 
+    /**
+    * creates unscored bouts and adds them to the pool
+    */
     addBouts(){
         for (var i = 0; i < this.numFencers; i++){
             let temp = getCurrentBout();
@@ -156,7 +165,6 @@ class Pool {
     nextBout(){this.currBout++;}
 
     getOrder(){return this.order;}
-
     getFencers(){return this.fencers;}
 }
 

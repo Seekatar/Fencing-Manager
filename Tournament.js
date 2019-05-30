@@ -13,7 +13,7 @@ class Tournament {
     constructor(name){
         this.name = name;
         this.events = [];
-        this.numEvents = this.events.lenght;
+        this.numEvents = this.events.length;
     }
 
     addEvent(name, weapon, fencers, sanctioned){
@@ -21,7 +21,6 @@ class Tournament {
     }
 
     getName(){return this.name;}
-
     getEvents(){return this.events;}
 }
 module.exports = Tournament;

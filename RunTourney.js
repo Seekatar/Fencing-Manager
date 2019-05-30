@@ -2,11 +2,13 @@ const Fencer = require('./Fencer.js');
 const Pool = require('./Pool.js');
 const Event = require('./Event.js');
 const Tournament = require('./Tournament.js');
+const Card = require('./Card.js');
 
 /* Testing ********************************************************************/
 const POOL_TEST = false;
 const EVENT_TEST = false;
-const TOURNEY_TEST = true;
+const TOURNEY_TEST = false;
+const CARD_TEST = true;
 
 let fencer0 = new Fencer("Jimmy Wallace","B");
 let fencer1 = new Fencer("Patrick Malloy","B", "E");
@@ -38,4 +40,9 @@ if (TOURNEY_TEST){
     t.addEvent("Div 1 ME", "epee", [fencer0, fencer1, fencer2], true);
     console.log(t.getName());
     console.log(t.getEvents());
+}
+
+if (CARD_TEST){
+    let c = new Card(1, fencer0, "Yellow", "weapon failed when presenting for testing")
+    console.log(c.info());
 }
