@@ -36,14 +36,12 @@ class Fencer {
     }
 
     /**
-    * @param win boolean, whether they won the bout or not
-    * @param scored the points scored
-    * @param received the points received
-    * adds a bout to the fencer
+    * goes through all the bouts the fencer has fenced and calculates
+    * touches scored, received, and victories
     */
     scoreBouts(){
         for (var i = 0; i < this.bouts.length; i++){
-            if (this.equals(winner)){
+            if (this.equals(this.bouts[i].getWinner())){
                 this.victories++;
             }
             this.touchesScored += this.bouts[i].getScored(this);
@@ -53,7 +51,7 @@ class Fencer {
 
     /**
     * @precondition other object must be a fencer object
-    * @param other anothe fencer object
+    * @param other anothers fencer object
     * @return whether or not another fencer object is equal to this
     */
     equals(other){

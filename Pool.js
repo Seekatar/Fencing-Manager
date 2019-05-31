@@ -125,7 +125,19 @@ class Pool {
     scoreBouts(leftScores, rightScores){
         for (var i = 0; i < this.bouts.length; i++){
             this.bouts[i].score(leftScores[i], rightScores[i]);
+
             this.bouts[i].finish();
+
+            var currFencers = this.getCurrentFencers();
+            currFencers[0].addBoutObj(this.bouts[i]);
+            currFencers[1].addBoutObj(this.bouts[i]);
+
+        }
+    }
+
+    calcResults(){
+        for (var i = 0; i < this.fencers.length; i+=){
+            this.fencers[i].scoreBouts();
         }
     }
 

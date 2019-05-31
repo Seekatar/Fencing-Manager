@@ -10,7 +10,27 @@ const POOL_TEST = false;
 const EVENT_TEST = false;
 const TOURNEY_TEST = false;
 const CARD_TEST = false;
-const RESULT_TEST = true;
+
+/*
+
+1. create tournament
+2. add event
+3. add fencers
+4. create pool
+5. add fencers to pool
+    a. add bouts to fencers though pool
+6. gather scores
+7. score bouts through pools
+    a. pool will score bouts for each fencer
+8. get pool results
+    a. seed for DEs
+9. create DE table
+10. run through DEs
+    a. add more bouts to fencers
+    b. more results with fencers
+11. event results
+
+*/
 
 let fencer0 = new Fencer("Jimmy Wallace","B");
 let fencer1 = new Fencer("Patrick Malloy","B", "E");
