@@ -4,6 +4,8 @@
 * holds the name and events of the tournament
 */
 
+const Event = require('./Event.js')
+
 class Tournament {
 
     /**
@@ -13,15 +15,16 @@ class Tournament {
     constructor(name){
         this.name = name;
         this.events = [];
-        this.numEvents = this.events.lenght;
+        this.numEvents = this.events.length;
     }
 
     addEvent(name, weapon, fencers, sanctioned){
-        this.events.push(name, weapon, fencers, sanctioned)
+        var event = new Event(name, weapon, fencers, sanctioned);
+        this.events.push(event);
+        return event;
     }
 
     getName(){return this.name;}
-
     getEvents(){return this.events;}
 }
 module.exports = Tournament;
