@@ -1,0 +1,5 @@
+// Run Mongo if the VS Code Azure Cosmo DB extension is installed.
+// Click above top of line 1 to Connect to a db
+
+// Click Execute above a query to run it
+db.fencers.find()
