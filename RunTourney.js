@@ -14,8 +14,8 @@ const CARD_TEST = false;
 /*
 
 1. create tournament
-2. add event
-3. add fencers
+2. add fencers
+3. add event
 4. create pool
 5. add fencers to pool
     a. add bouts to fencers though pool
@@ -32,9 +32,30 @@ const CARD_TEST = false;
 
 */
 
+// create Tournament
+var myTournament = new Tournament("test tournament");
+
+// create fencers
 let fencer0 = new Fencer("Jimmy Wallace","B");
 let fencer1 = new Fencer("Patrick Malloy","B", "E");
 let fencer2 = new Fencer("Nick Bampton"," C");
+
+// add event
+myTournament.addEvent("Div I ME", "Epee", [fencer0, fencer1, fencer2], true);
+
+// create pool and add fencers to pools
+myTournament.getEvents()[0].createPools();
+
+//console.log("Fencers in " + myTournament.getEvents()[0].getName() + ": ", myTournament.getEvents()[0].getPools()[0].getFencers());
+
+leftScores = [1,5,1];
+rightScores = [5,3,5];
+
+// scores the pool
+myTournament.getEvents()[0].getPools()[0].scoreBouts(leftScores, rightScores);
+myTournament.getEvents()[0].getPools()[0].calcResults();
+console.log(myTournament.getEvents()[0].getPools()[0].getFencers()[0].getVictories());
+
 
 if (POOL_TEST){
     let pool1 = new Pool(1, [fencer0, fencer1, fencer2]);
@@ -67,12 +88,4 @@ if (TOURNEY_TEST){
 if (CARD_TEST){
     let c = new Card(1, fencer0, "Yellow", "weapon failed when presenting for testing")
     console.log(c.info());
-}
-
-if (RESULT_TEST){
-    let pool1 = new Pool(1, [fencer0, fencer1, fencer2]);
-    leftScores = [1,3,1];
-    rightScores = [5,5,5];
-    pool1.addBouts(leftScores, rightScores);
-    console.log(pool1.getResults());
 }

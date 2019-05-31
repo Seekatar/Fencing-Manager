@@ -41,7 +41,9 @@ class Fencer {
     */
     scoreBouts(){
         for (var i = 0; i < this.bouts.length; i++){
-            if (this.equals(this.bouts[i].getWinner())){
+            console.log(this.bouts[i].getWinner());
+            if (this.name === this.bouts[i].getWinner().getName()){
+                console.log("scoring");
                 this.victories++;
             }
             this.touchesScored += this.bouts[i].getScored(this);

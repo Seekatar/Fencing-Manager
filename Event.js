@@ -42,21 +42,15 @@ class Event {
     */
     createPools(){
         this.calculateNumPools();
-        for (var i = 0; i < this.numPools; i++){
-            let size;
-            let tempFencers;
 
-            if (this.numFencers <= 7) {
-                size = this.numFencers;
-                tempFencers = this.fencers;
-            }
-            else {
-                console.log("<!> WARNING <!> Lazy code, fix this later, this should calculte the proper number of fencers if there are, say 20 fencers in the event");
-                tempFencers = null;
-                size = 7;
-            }
 
-            this.pools.push(new Pool(i+1, tempFencers, this.weapon, size));
+        if (this.numFencers <= 9) {
+            var tempFencers = this.fencers;
+        }
+
+        this.pools.push(new Pool(tempFencers, this.weapon));
+        for (var i = 0; i < this.pools.length; i++){
+            this.pools[i].addBouts(this.numFencers);
         }
     }
 

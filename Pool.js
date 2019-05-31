@@ -16,8 +16,7 @@ class Pool {
     * @param weapon the weapon for this pool (epee/foil/sabre)\
     * @param size may or may not be used
     */
-    constructor(fencers, weapon, size){
-        this.size = size;
+    constructor(fencers, weapon){
         this.currBout = 0;
         this.bouts = [];
         this.places = [];
@@ -91,8 +90,12 @@ class Pool {
     /**
     * creates unscored bouts and adds them to the pool
     */
-    addBouts(){
-        for (var i = 0; i < this.numFencers; i++){
+    addBouts(size=0){
+        if (!size){
+            size = this.numFencers;
+        }
+
+        for (var i = 0; i < size; i++){
             let temp = this.getCurrentFencers();
             let left = temp[0];
             let right = temp[1];
@@ -136,7 +139,7 @@ class Pool {
     }
 
     calcResults(){
-        for (var i = 0; i < this.fencers.length; i+=){
+        for (var i = 0; i < this.fencers.length; i++){
             this.fencers[i].scoreBouts();
         }
     }

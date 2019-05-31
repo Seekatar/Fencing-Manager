@@ -33,22 +33,24 @@ class Bout{
     * @param cards any cards issued during the bout
     * scores the bout if it wasn't scored on creation
     */
-    score(left, right, cards){
-        this.leftScore = leftScore;
-        this.rightScore = rightScore;
+    score(left, right, cards=null){
+        this.leftScore = left;
+        this.rightScore = right;
         this.cards = cards;
     }
 
     finish(){
         // left fencer wins
         if (this.leftScore > this.rightScore){
-            this.winner = this.leftFencer;
-            this.loser = this.rightFencer;
+            console.log("left win");
+            this.winner = this.FOTL;
+            this.loser = this.FOTR;
         }
         // right fencer wins
         else{
-            this.winner = this.rightFencer;
-            this.loser = this.leftFencer;
+            console.log("left win");
+            this.winner = this.FOTR;
+            this.loser = this.FOTL;
         }
     }
 

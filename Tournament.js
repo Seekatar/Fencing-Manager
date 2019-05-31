@@ -4,6 +4,8 @@
 * holds the name and events of the tournament
 */
 
+const Event = require('./Event.js')
+
 class Tournament {
 
     /**
@@ -17,7 +19,9 @@ class Tournament {
     }
 
     addEvent(name, weapon, fencers, sanctioned){
-        this.events.push(name, weapon, fencers, sanctioned)
+        var event = new Event(name, weapon, fencers, sanctioned);
+        this.events.push(event);
+        return event;
     }
 
     getName(){return this.name;}
