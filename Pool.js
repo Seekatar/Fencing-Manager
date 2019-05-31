@@ -5,18 +5,18 @@
 * is used to calculate results of the pool
 */
 
+const Bout = require('./Bout.js');
+
 const DEBUG = true;
 
 class Pool {
 
     /**
-    * @param number the number of fencers
     * @param fencers an array of fencers in the pool
     * @param weapon the weapon for this pool (epee/foil/sabre)\
     * @param size may or may not be used
     */
-    constructor(number, fencers, weapon, size){
-        this.number = number;
+    constructor(fencers, weapon, size){
         this.size = size;
         this.currBout = 0;
         this.bouts = [];
@@ -33,40 +33,6 @@ class Pool {
         }
     }
 
-    getResults(){
-        let results = [this.fencers[0]];
-
-        for (var f = 0; f < this.numFencers; f++){
-            for (var r = 0; r < results.length; r++){
-
-                if (fencers[f].getVictories() < results[r].getVictories() &&
-                    fencers[f].getVictories() != results[r].getVictories()){
-                        results.splice(r+1, 0, fencers[f]);
-                        break;
-                }
-                else if (fencers[f].getIndicator() < results[r].getIndicator() &&
-                         fencers[f].getIndicator() != results[r].getIndicator()){
-                         results.splice(r+1, 0, fencers[f]);
-                         break;
-                }
-                else if (fencers[f].getTS() < results[r].getTS() &&
-                         fencers[f].getTS() != results[r].getTS()){
-                         results.splice(r+1, 0, fencers[f]);
-                         break;
-                }
-                else if (fencers[f].getTR() < results[r].getTR() &&
-                         fencers[f].getTR() != results[r].getTR()){
-                         results.splice(r+1, 0, fencers[f]);
-                         break;
-                }
-                else {
-                    results.splice(r+2, 0, fencers[f]);
-                }
-            }
-        }
-        return results;
-    }
-
     /**
     * @param fencers an array of fencers
     * adds fencers to the pool if they were not added at the creation of the
@@ -77,6 +43,16 @@ class Pool {
         this.fencers = fencers;
         this.numFencers = this.fencers.length;
         setOrder();
+    }
+
+    addBoutsToFencers(){
+        for (var i = 0; i < this.bouts.length; i++){
+            leftFencer = this.bouts[i].getFOTL();
+            rightFencer = this.bouts[i].getFOTR();
+
+            leftFencer.addBoutObj(this.bouts[i]);
+            rightFencer.addBoutObj(this.bouts[i]);
+        }
     }
 
     /**
@@ -117,7 +93,7 @@ class Pool {
     */
     addBouts(){
         for (var i = 0; i < this.numFencers; i++){
-            let temp = getCurrentBout();
+            let temp = this.getCurrentFencers();
             let left = temp[0];
             let right = temp[1];
 
@@ -131,7 +107,7 @@ class Pool {
     * the first element is the left fencer and the second element is
     * the right fencer
     */
-    getCurrentBout(){
+    getCurrentFencers(){
         let rightFencerNum = (Math.floor(this.order[this.currBout] / 10)) - 1;
         let leftFencerNum = (this.order[this.currBout] % 10) - 1;
 

@@ -6,6 +6,8 @@
 class Bout{
 
     /**
+    * @param id the id for the bout, there could be duplicates, uniqueness is
+                only for each fencer
     * @param FOTL (required) fencer on the left
     * @param FOTR (required) fencer on the right
     * @param leftScore the score for FOTL
@@ -13,13 +15,16 @@ class Bout{
     * @param time the time elapsed in the bout
     * @param cards an array of cards given in the bout
     */
-    constructor(FOTL, FOTR, leftScore=0, rightScore=0, time=0, cards=null){
+    constructor(id, FOTL, FOTR, leftScore=0, rightScore=0, time=0, cards=null){
+        this.id = id;
         this.FOTL = FOTL;
         this.FOTR = FOTR;
         this.leftScore = leftScore;
         this.rightScore = rightScore;
         this.time = time;
         this.cards = cards;
+        this.winner = null;
+        this.loser = null;
     }
 
     /**
@@ -37,14 +42,34 @@ class Bout{
     finish(){
         // left fencer wins
         if (this.leftScore > this.rightScore){
-            this.FOTL.addBout(true, leftScore, rightScore);
-            this.FOTR.addBout(false, rightScore, leftScore);
+            this.winner = this.leftFencer;
+            this.loser = this.rightFencer;
         }
         // right fencer wins
         else{
-            this.FOTR.addBout(true, leftScore, rightScore);
-            this.FOTL.addBout(false, rightScore, leftScore);
+            this.winner = this.rightFencer;
+            this.loser = this.leftFencer;
         }
+    }
+
+    /**
+    * @param fencer a fencer
+    */
+    getScored(fencer){
+        if (fencer.equals(this.FOTL)){
+            return this.leftScore;
+        }
+        return this.rightScore;
+    }
+
+    /**
+    * @param fencer a fencer
+    */
+    getRec(fencer){
+        if (!fencer.equals(this.FOTL)){
+            return this.leftScore;
+        }
+        return this.rightScore;
     }
 
     getFOTL(){return this.FOTL;}
@@ -52,5 +77,7 @@ class Bout{
     getLeftScore(){return this.leftScore;}
     getRightScore(){return this.rightScore;}
     getCards(){return this.cards;}
+    getWinner(){return this.winner;}
+    getLoser(){return this.loser;}
 }
 module.exports = Bout;

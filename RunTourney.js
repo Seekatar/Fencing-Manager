@@ -3,6 +3,7 @@ const Pool = require('./Pool.js');
 const Event = require('./Event.js');
 const Tournament = require('./Tournament.js');
 const Card = require('./Card.js');
+const Bout = require('./Bout.js');
 
 /* Testing ********************************************************************/
 const POOL_TEST = false;
@@ -50,8 +51,8 @@ if (CARD_TEST){
 
 if (RESULT_TEST){
     let pool1 = new Pool(1, [fencer0, fencer1, fencer2]);
-    leftScores = [1,5,1];
-    rightScores = [5,3,5];
+    leftScores = [1,3,1];
+    rightScores = [5,5,5];
     pool1.addBouts(leftScores, rightScores);
-    
+    console.log(pool1.getResults());
 }
