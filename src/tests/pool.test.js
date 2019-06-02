@@ -11,13 +11,10 @@ const fencer2 = new Fencer("Nick Bampton"," C");
 
 test('pool test', () => {
     const pool1 = new Pool(1, [fencer0, fencer1, fencer2]);
-    const currentBout = pool1.getCurrentBout();
-
-    console.log("Bout Order: " + pool1.getOrder());
 
     leftScores = [1,5,1];
     rightScores = [5,3,5];
-    pool1.runPool(leftScores, rightScores);
+    pool1.scoreBouts(leftScores, rightScores);
     expect('1').toBe('1');
 })
 
@@ -29,12 +26,11 @@ test('event test', () => {
     e.createPools();
 
     expect(e.getPools().length).toBe(1);
-    expect(e.getPools()[0].size).toBe(3);
 })
 
 test('tournament test', () => {
     const t = new Tournament("test");
     t.addEvent("Div 1 ME", "epee", [fencer0, fencer1, fencer2], true);
     expect(t.getName()).toBe("test");
-    expect(t.getEvents().length).toBe(4);
+    expect(t.getEvents().length).toBe(1);
 })
